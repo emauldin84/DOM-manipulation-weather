@@ -9,6 +9,7 @@
 const cityDiv = document.createElement('div');
 const tempDiv = document.createElement('div');
 const windSpeedDiv = document.createElement('div');
+const lineBreak = document.createElement('br');
 
 const container = document.querySelector('[data-container]');
 
@@ -36,6 +37,7 @@ function displayUrl(event) {
   iconDiv.setAttribute('src', event);
 
   container.append(iconDiv);
+  container.append(lineBreak);
 };
 
 displayUrl(findIconUrl(atlWeather))
