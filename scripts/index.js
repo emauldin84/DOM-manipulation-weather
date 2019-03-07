@@ -1,9 +1,10 @@
+// ******************************
 // Using the tdd-weather repo as your starter code, create and append DOM elements that show the following information:
 
 // city name
 // temperature
 // wind speed
-
+// ******************************
 
 const cityDiv = document.createElement('div');
 const tempDiv = document.createElement('div');
@@ -19,8 +20,9 @@ cityDiv.textContent = `City: ${atlWeather.name}`;
 tempDiv.textContent = `Temperature: ${atlWeather.main.temp}`;
 windSpeedDiv.textContent = `Wind Speed: ${atlWeather.wind["speed"]}`;
 
+// ******************************
 // Bonus #1: Showing an icon
-
+// ******************************
 function findIconUrl(weatherObj) {
   const iconUrl = 'http://openweathermap.org/img/w/' + atlWeather.weather[0].icon + '.png';
 
@@ -38,8 +40,9 @@ function displayUrl(event) {
 
 displayUrl(findIconUrl(atlWeather))
 
-
+// ******************************
 // Bonus #2: Showing a map
+// ******************************
 function buildCoordinatesUrl(weatherObj) {
   const latitude = atlWeather.coord.lat;
   const longitude = atlWeather.coord.lon;
@@ -58,6 +61,34 @@ function displayMap(event) {
 
 displayMap(buildCoordinatesUrl(atlWeather));
 
+// ******************************
+// Bonus #3: Converting the sunrise/sunset
+// ******************************
+
+const sunriseDiv = document.createElement('div');
+const sunsetDiv = document.createElement('div');
+
+container.append(sunriseDiv);
+container.append(sunsetDiv);
+
+// format sunrise
+const sunriseUnix = atlWeather.sys.sunrise;
+const sunriseDate = new Date(sunriseUnix * 1000);
+const sunriseHours = sunriseDate.getHours();
+const sunriseMins = "0" + sunriseDate.getMinutes();
+const sunriseSecs = "0" + sunriseDate.getSeconds();
+const formattedSunrise = sunriseHours + ':' + sunriseMins.substr(-2) + ':' + sunriseSecs.substr(-2);
+
+// format sunset
+const sunsetUnix = atlWeather.sys.sunset;
+const sunsetDate = new Date(sunsetUnix * 1000);
+const sunsetHours = sunsetDate.getHours();
+const sunsetMins = "0" + sunsetDate.getMinutes();
+const sunsetSecs = "0" + sunsetDate.getSeconds();
+const formattedSunset = sunsetHours + ':' + sunsetMins.substr(-2) + ':' + sunsetSecs.substr(-2);
+
+sunriseDiv.textContent = `Sunrise: ${formattedSunrise}`;
+sunsetDiv.textContent = `Sunset: ${formattedSunset}`;
 
 
 
