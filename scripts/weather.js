@@ -25,7 +25,3 @@ const atlWeather = {
   name: "Atlanta",
   cod: 200
 };
-
-try {
-  module.exports = atlWeather;
-} catch (e) {}
